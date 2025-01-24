@@ -24,6 +24,7 @@
 }
 .res-card{
     margin: 8px;
+    text-decoration: none;
     width: 100%;
     max-width: 282px; /* Constrains the card width */
     padding: 6px;
@@ -44,4 +45,21 @@
 .filter-btn{
     margin: 10px;
     cursor: pointer;
+}
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-card{
+    margin: 20px;
+    width: 282px;
+    height: 400px;
+    background-color: #f0f0f0;
+}
+.login{
+    padding: 0 20px;
+    cursor: pointer;
+}
+.filter{
+    display: flex;
 }
