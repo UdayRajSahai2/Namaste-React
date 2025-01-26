@@ -7,6 +7,9 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const[filteredRestaurant,setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  console.log("Body rendered",listOfRestaurants);
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -29,17 +32,18 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-black border-solid  p-2 rounded-lg focus:outline-none"
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
             value={searchText}
+             placeholder="Search restaurants..."
           />
-          <button
+          <button className="px-4 py-2 bg-green-400 m-2 rounded-lg hover:bg-green-600"
             onClick={() => {
               const filteredRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -50,19 +54,21 @@ const Body = () => {
             Search
           </button>
         </div>
+        <div className="m-4 p-4 flex items-center">
         <button
-          className="filter-btn"
+          className="px-4 py-1 bg-amber-200 text-black m-1 rounded-lg cursor-pointer hover:bg-amber-500"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
               (res) => res.info.avgRating > 4.3
             );
-            setListOfRestaurants(filteredList);
+            setFilteredRestaurant(filteredList);
           }}
         >
           Top Rated Restaurants
         </button>
+        </div>       
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurant.map((restaurant) => (
           <Link
           key={restaurant.info.id} 
